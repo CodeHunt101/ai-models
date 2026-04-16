@@ -1,0 +1,15 @@
+services:
+  openai-models:
+    image: ${OPENAI_MODELS_IMAGE:-haroldtm55/openai-models:latest}
+    container_name: openai-models
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    env_file:
+      - .env.openai-models
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:3001/ || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
