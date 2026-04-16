@@ -1,25 +1,25 @@
-# Use the official lightweight Node.js 16 image.
+# Use official lightweight Node.js image.
 # https://hub.docker.com/_/node
 FROM node:22-alpine3.22
 
-# Create app directory (where your app will be placed)
+# Create app directory.
 WORKDIR /usr/src/app
 
-# Install app dependencies by copying
-# package.json and package-lock.json
-COPY package*.json ./
+# Enable pnpm via Corepack.
+RUN corepack enable
 
-# Install dependencies
-RUN npm install
+# Install app dependencies.
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
-# Bundle app source inside the Docker image
+# Bundle app source inside Docker image.
 COPY . .
 
-# Build the Next.js app
-RUN npm run build
+# Build Next.js app.
+RUN pnpm build
 
-# App binds to port 3001 so you'll use the EXPOSE instruction to have it mapped by the docker daemon
+# App binds to port 3001.
 EXPOSE 3001
 
-# Define the command to run your app using CMD which defines your runtime
-CMD [ "npm", "start" ]
+# Runtime command.
+CMD [ "pnpm", "start" ]

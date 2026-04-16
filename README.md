@@ -2,7 +2,7 @@ A personal project where I utilise the main OpenAI and Deepseek API premium mode
 
 Since this is a paid API, if you would like access, please email me at `haroldtm55@gmail.com`, and I'll grant you free access.
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) `15.5.15` App Router project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ### Example using `gpt-4o` text generation model
 
@@ -38,14 +38,25 @@ Upload any screenshot containing an ACE exam question and it will give you the a
 
 Note: Since this is a paid API, you need an access key. Feel free to contact me and I'll provide you with one.
 
-First, run the development server:
+Install dependencies and run development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install --frozen-lockfile
 pnpm dev
 ```
 
 Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
+
+## Docker
+
+Build image:
+
+```bash
+docker build -t openai-models .
+```
+
+Run container:
+
+```bash
+docker run --env-file .env.local -p 3001:3001 openai-models
+```

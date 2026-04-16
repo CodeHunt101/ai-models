@@ -18,6 +18,8 @@
 # misc
 .DS_Store
 *.pem
+.pnpm-store/
+.swc/
 
 # debug
 npm-debug.log*
@@ -41,3 +43,7 @@ openai-models*.*
 *.cer
 *.pem
 *.key
+
+# agents
+.claude/
+.codex/

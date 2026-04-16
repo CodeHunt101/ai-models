@@ -1,2 +1,14 @@
 node_modules
 npm-debug.log
+pnpm-debug.log
+.git
+.github
+.next
+coverage
+.env
+.env.*
+.claude
+.codex
+openai-models-oracle.key
+*.pem
+*.key
