@@ -5,8 +5,6 @@ import path from 'path'
 import { AudioTranscriptionModel } from '@/types/enums'
 import { getAudioTranscription } from '@/utils/openai-requests'
 
-const openai = new OpenAI()
-
 export async function POST(req: NextRequest) {
   console.log({
     service: 'Audio transcription',
@@ -14,6 +12,7 @@ export async function POST(req: NextRequest) {
   })
 
   try {
+    const openai = new OpenAI()
     const formData = await req.formData()
     const file = formData.get('file') as File
 

@@ -2,11 +2,11 @@ import { NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
 import { Thread } from 'openai/resources/beta/threads/threads'
 
-const openai = new OpenAI()
 let thread: Thread | null = null
 
 export async function POST(req: NextRequest) {
   try {
+    const openai = new OpenAI()
     const body = await req.json()
 
     if (body.deleteThread) {

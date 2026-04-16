@@ -7,11 +7,6 @@ import { ChatCompletionModel } from '@/types/enums'
 import OpenAI from 'openai'
 import { addAssistantMessage } from '@/utils/helpers'
 
-const openai = new OpenAI({
-  baseURL: process.env.DEEPSEEK_BASE_URL,
-  apiKey: process.env.DEEPSEEK_API_KEY,
-})
-
 // Helper to update messages (duplicated/adapted from utils/api/chat.ts to avoid NextApiResponse dependency)
 const updateMessages = (
   user: string,
@@ -55,6 +50,10 @@ export async function POST(req: NextRequest) {
     const newMessagesWithUser = addUserMessage(prompt, user, messagesWithUser)
     updateMessagesWithUser(newMessagesWithUser)
     const filteredMessages = filterMessagesByUser(user, newMessagesWithUser)
+    const openai = new OpenAI({
+      baseURL: process.env.DEEPSEEK_BASE_URL,
+      apiKey: process.env.DEEPSEEK_API_KEY,
+    })
     
     const imageFiles = Array.from(formData.entries())
       .filter(([key, value]) => value instanceof File && value.size > 0)

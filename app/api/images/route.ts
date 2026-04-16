@@ -3,10 +3,9 @@ import { ImageGenerationModel } from '@/types/enums'
 import { getImageGeneration } from '@/utils/openai-requests'
 import OpenAI from 'openai'
 
-const openai = new OpenAI()
-
 export async function POST(req: NextRequest) {
   try {
+    const openai = new OpenAI()
     const body = await req.json()
     const prompt = body.prompt
 
